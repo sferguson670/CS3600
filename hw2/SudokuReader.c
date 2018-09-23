@@ -40,46 +40,54 @@ typedef struct {
 } run_param;
 
 /* checks the columns */
+/*
 void *checkColumn (void* param) {
 
 }
+*/
 
 /* checks the rows */
+/*
 void *checkRow (void* param) {
 
 }
+*/
 
 /* checks subgrids 3x3 */
+/*
 void *checkSubGrid (void* param) {
 
 }
+*/
 
-int main(int argc, char *argv[]) {
+
+int main() {
     /* opens up .txt file */
-    FILE *ptr_file;
-    int num;
-
-    ptr_file = fopen("SudokuPuzzle.txt", "r");
-    if (ptr_file == NULL) {
+    FILE *fp = fopen("SudokuPuzzle.txt", "r");
+    if (fp == NULL) {
         printf("Error. Could not open file");
         /* Program exits if the file pointer returns NULL. */
         exit(1);
     } else {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (fscanf(ptr_file, "%d", &num) != 1)
-                    printf("Error");
+                int num;
+                if (fscanf(fp, " %d", &num) != 1)
+                    printf("Error reading input file");
                 else
                     sudokuPuzzle[i][j] = num;
             }
         }
     }
-    fclose(ptr_file);
+    fclose(fp);
 
     /* print outs the sudoku puzzle */
+    printf("\n");
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             printf("%d\t", sudokuPuzzle[i][j]);
         }
+        printf("\n");
     }
+    printf("\n");
 }
